@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using GestioneTicket_project.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<GestioneTicket_projectContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GestioneTicket_projectContext") ?? throw new InvalidOperationException("Connection string 'GestioneTicket_projectContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
